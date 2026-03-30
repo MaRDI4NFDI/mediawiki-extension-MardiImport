@@ -7,6 +7,12 @@
     "APIModules": {
         "updateItemFromWikiData": {
             "class": "MediaWiki\\Extension\\MardiImport\\ApiMardiImport"
+        },
+        "importItemFromWikiData": {
+            "class": "MediaWiki\\Extension\\MardiImport\\ApiImportWikidata"
+        },
+        "importItemFromDoi": {
+            "class": "MediaWiki\\Extension\\MardiImport\\ApiImportDoi"
         }
     },
     "AutoloadNamespaces": {
