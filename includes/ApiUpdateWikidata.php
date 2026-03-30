@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\MardiImport;
 
 use ApiBase;
 
-class ApiMardiImport extends ApiBase {
+class ApiUpdateWikidata extends ApiBase {
 
     public function execute() {
         // Block anonymous users — CSRF token requirement enforces this automatically,

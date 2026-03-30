@@ -6,7 +6,7 @@
     "type": "other",
     "APIModules": {
         "updateItemFromWikiData": {
-            "class": "MediaWiki\\Extension\\MardiImport\\ApiMardiImport"
+            "class": "MediaWiki\\Extension\\MardiImport\\ApiUpdateWikidata"
         },
         "importItemFromWikiData": {
             "class": "MediaWiki\\Extension\\MardiImport\\ApiImportWikidata"
