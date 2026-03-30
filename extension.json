@@ -1,0 +1,16 @@
+{
+    "name": "MardiImport",
+    "version": "1.0.0",
+    "author": "MaRDI",
+    "descriptionmsg": "mardiimport-desc",
+    "type": "other",
+    "APIModules": {
+        "mardiimport": {
+            "class": "MediaWiki\\Extension\\MardiImport\\ApiMardiImport"
+        }
+    },
+    "AutoloadNamespaces": {
+        "MediaWiki\\Extension\\MardiImport\\": "includes/"
+    },
+    "manifest_version": 2
+}
