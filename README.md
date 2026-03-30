@@ -17,7 +17,7 @@ The link is rendered client-side and only visible to logged-in users on the resp
 ```
 Browser (logged-in user)
     │
-    │  POST /w/api.php?action=mardiimport&qid=Q12345 + CSRF token
+    │  POST /w/api.php?action=updateItemFromWikiData&qid=Q12345 + CSRF token
     ▼
 MediaWiki API (server-side)
     │
@@ -43,7 +43,7 @@ This extension is using in the [MaRDI docker-wikibase](https://github.com/MaRDI4
 The extension is called using JS:
 ```
 mw.Api().postWithToken( 'csrf', {
-    action: 'mardiimport',
+    action: 'updateItemFromWikiData',
     qid: 'Q12345'
 } ... )
 ```
