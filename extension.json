@@ -5,7 +5,7 @@
     "descriptionmsg": "mardiimport-desc",
     "type": "other",
     "APIModules": {
-        "mardiimport": {
+        "updateItemFromWikiData": {
             "class": "MediaWiki\\Extension\\MardiImport\\ApiMardiImport"
         }
     },
