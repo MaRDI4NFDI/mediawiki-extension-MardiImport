@@ -4,7 +4,7 @@ A minimal MediaWiki API extension for the MaRDI Portal that allows logged-in use
 
 ## Overview
 
-The MaRDI Portal has items that are connected to WikiData item. This extension provides a secure server-side API endpoint (`action=mardiimport`) that:
+The MaRDI Portal has items that are connected to WikiData item. This extension provides a secure server-side API endpoint (`action=updateItemFromWikiData`) that:
 
 - Accepts a Wikidata QID as input
 - Verifies the requesting user is logged in (via CSRF token)
