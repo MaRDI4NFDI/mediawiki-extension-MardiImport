@@ -7,6 +7,8 @@ use ApiBase;
 class ApiUpdateWikidata extends ApiBase {
 
     public function execute() {
+        $logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'MardiImport' );
+
         // Block anonymous users — CSRF token requirement enforces this automatically,
         // but we add an explicit check for clarity.
         if ( !$this->getUser()->isRegistered() ) {
@@ -18,6 +20,8 @@ class ApiUpdateWikidata extends ApiBase {
 
         // Call internal importer server-side via POST — never exposed to the browser
         $url = 'http://importer/update/wikidata';
+        $logger->info( 'updateItemFromWikiData called', [ 'user' => $this->getUser()->getName(), 'qid' => $qid ] );
+
         $req = \MediaWiki\MediaWikiServices::getInstance()
             ->getHttpRequestFactory()
             ->create( $url, [ 'method' => 'POST' ], __METHOD__ );
@@ -28,9 +32,11 @@ class ApiUpdateWikidata extends ApiBase {
         $status = $req->execute();
 
         if ( !$status->isOK() ) {
+            $logger->error( 'Failed to contact importer', [ 'url' => $url ] );
             $this->dieWithError( 'Failed to contact importer.', 'importerfailed' );
         }
 
+        $logger->info( 'updateItemFromWikiData succeeded', [ 'qid' => $qid ] );
         $this->getResult()->addValue( null, 'result', $req->getContent() );
     }
 

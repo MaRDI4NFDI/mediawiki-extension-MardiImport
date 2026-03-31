@@ -1,7 +1,8 @@
 {
     "name": "MardiImport",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "MaRDI",
+    "url": "https://github.com/MaRDI4NFDI/mediawiki-extension-MardiImport",
     "descriptionmsg": "mardiimport-desc",
     "type": "other",
     "APIModules": {
@@ -17,6 +18,11 @@
     },
     "AutoloadNamespaces": {
         "MediaWiki\\Extension\\MardiImport\\": "includes/"
+    },
+    "MessagesDirs": {
+        "MardiImport": [
+            "i18n"
+        ]
     },
     "manifest_version": 2
 }

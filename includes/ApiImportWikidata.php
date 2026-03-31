@@ -7,6 +7,8 @@ use ApiBase;
 class ApiImportWikidata extends ApiBase {
 
     public function execute() {
+        $logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'MardiImport' );
+
         if ( !$this->getUser()->isRegistered() ) {
             $this->dieWithError( 'You must be logged in.', 'notloggedin' );
         }
@@ -15,6 +17,8 @@ class ApiImportWikidata extends ApiBase {
         $qids = $params['qids'];
 
         $url = 'http://importer/import/wikidata';
+        $logger->info( 'importItemFromWikiData called', [ 'user' => $this->getUser()->getName(), 'qids' => $qids ] );
+
         $req = \MediaWiki\MediaWikiServices::getInstance()
             ->getHttpRequestFactory()
             ->create( $url, [ 'method' => 'POST' ], __METHOD__ );
@@ -25,9 +29,11 @@ class ApiImportWikidata extends ApiBase {
         $status = $req->execute();
 
         if ( !$status->isOK() ) {
+            $logger->error( 'Failed to contact importer', [ 'url' => $url ] );
             $this->dieWithError( 'Failed to contact importer.', 'importerfailed' );
         }
 
+        $logger->info( 'importItemFromWikiData succeeded', [ 'qids' => $qids ] );
         $this->getResult()->addValue( null, 'result', $req->getContent() );
     }
 

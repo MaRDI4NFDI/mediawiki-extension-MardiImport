@@ -7,6 +7,8 @@ use ApiBase;
 class ApiImportDoi extends ApiBase {
 
     public function execute() {
+        $logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'MardiImport' );
+
         if ( !$this->getUser()->isRegistered() ) {
             $this->dieWithError( 'You must be logged in.', 'notloggedin' );
         }
@@ -15,6 +17,8 @@ class ApiImportDoi extends ApiBase {
         $dois = $params['dois'];
 
         $url = 'http://importer/import/doi_async';
+        $logger->info( 'importItemFromDoi called', [ 'user' => $this->getUser()->getName(), 'dois' => $dois ] );
+
         $req = \MediaWiki\MediaWikiServices::getInstance()
             ->getHttpRequestFactory()
             ->create( $url, [ 'method' => 'POST' ], __METHOD__ );
@@ -25,9 +29,11 @@ class ApiImportDoi extends ApiBase {
         $status = $req->execute();
 
         if ( !$status->isOK() ) {
+            $logger->error( 'Failed to contact importer', [ 'url' => $url ] );
             $this->dieWithError( 'Failed to contact importer.', 'importerfailed' );
         }
 
+        $logger->info( 'importItemFromDoi succeeded', [ 'dois' => $dois ] );
         $this->getResult()->addValue( null, 'result', $req->getContent() );
     }
 
