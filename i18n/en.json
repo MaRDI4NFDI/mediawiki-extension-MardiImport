@@ -1,0 +1,6 @@
+{
+    "@metadata": {
+        "authors": ["MaRDI TA5"]
+    },
+    "mardiimport-desc": "Provides API actions to import and update items from Wikidata and DOI into the MaRDI Portal"
+}
