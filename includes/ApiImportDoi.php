@@ -21,10 +21,9 @@ class ApiImportDoi extends ApiBase {
 
         $req = \MediaWiki\MediaWikiServices::getInstance()
             ->getHttpRequestFactory()
-            ->create( $url, [ 'method' => 'POST' ], __METHOD__ );
+            ->create( $url, [ 'method' => 'POST', 'postData' => json_encode( [ 'dois' => $dois ] ) ], __METHOD__ );
 
         $req->setHeader( 'Content-Type', 'application/json' );
-        $req->setContent( json_encode( [ 'dois' => $dois ] ) );
 
         $status = $req->execute();
 

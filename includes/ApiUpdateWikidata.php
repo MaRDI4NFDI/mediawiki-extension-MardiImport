@@ -24,10 +24,9 @@ class ApiUpdateWikidata extends ApiBase {
 
         $req = \MediaWiki\MediaWikiServices::getInstance()
             ->getHttpRequestFactory()
-            ->create( $url, [ 'method' => 'POST' ], __METHOD__ );
+            ->create( $url, [ 'method' => 'POST', 'postData' => json_encode( [ 'qids' => [ $qid ] ] ) ], __METHOD__ );
 
         $req->setHeader( 'Content-Type', 'application/json' );
-        $req->setContent( json_encode( [ 'qids' => [ $qid ] ] ) );
 
         $status = $req->execute();
 

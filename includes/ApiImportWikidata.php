@@ -21,10 +21,9 @@ class ApiImportWikidata extends ApiBase {
 
         $req = \MediaWiki\MediaWikiServices::getInstance()
             ->getHttpRequestFactory()
-            ->create( $url, [ 'method' => 'POST' ], __METHOD__ );
+            ->create( $url, [ 'method' => 'POST', 'postData' => json_encode( [ 'qids' => $qids ] ) ], __METHOD__ );
 
         $req->setHeader( 'Content-Type', 'application/json' );
-        $req->setContent( json_encode( [ 'qids' => $qids ] ) );
 
         $status = $req->execute();
 
