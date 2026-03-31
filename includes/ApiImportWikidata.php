@@ -16,7 +16,8 @@ class ApiImportWikidata extends ApiBase {
         $params = $this->extractRequestParams();
         $qids = $params['qids'];
 
-        $url = 'http://importer/import/wikidata';
+        $baseUrl = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig()->get( 'MardiImportBaseUrl' );
+        $url = $baseUrl . '/import/wikidata';
         $logger->info( 'importItemFromWikiData called', [ 'user' => $this->getUser()->getName(), 'qids' => $qids ] );
 
         $req = \MediaWiki\MediaWikiServices::getInstance()

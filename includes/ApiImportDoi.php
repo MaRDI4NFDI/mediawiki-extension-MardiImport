@@ -16,7 +16,8 @@ class ApiImportDoi extends ApiBase {
         $params = $this->extractRequestParams();
         $dois = $params['dois'];
 
-        $url = 'http://importer/import/doi_async';
+        $baseUrl = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig()->get( 'MardiImportBaseUrl' );
+        $url = $baseUrl . '/import/doi_async';
         $logger->info( 'importItemFromDoi called', [ 'user' => $this->getUser()->getName(), 'dois' => $dois ] );
 
         $req = \MediaWiki\MediaWikiServices::getInstance()

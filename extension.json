@@ -16,6 +16,11 @@
             "class": "MediaWiki\\Extension\\MardiImport\\ApiImportDoi"
         }
     },
+    "config": {
+        "MardiImportBaseUrl": {
+            "value": "http://importer"
+        }
+    },
     "AutoloadNamespaces": {
         "MediaWiki\\Extension\\MardiImport\\": "includes/"
     },

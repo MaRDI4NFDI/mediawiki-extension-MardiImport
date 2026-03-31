@@ -34,6 +34,20 @@ Internal MaRDI importer service
 
 This extension is used in the [MaRDI docker-wikibase](https://github.com/MaRDI4NFDI/docker-wikibase) image. It is cloned automatically during the Docker build (`clone_all.sh`).
 
+## Configuration
+
+The base URL of the importer service can be set in `LocalSettings.php`. The default is:
+
+```php
+$wgMardiImportBaseUrl = 'http://importer';
+```
+
+Override this per environment as needed, e.g. in `LocalSettings.d/staging/mardiimport.php`:
+
+```php
+$wgMardiImportBaseUrl = 'http://staging-importer';
+```
+
 ## Usage
 
 | Action | Param | Flask endpoint |
@@ -46,5 +60,9 @@ This extension is used in the [MaRDI docker-wikibase](https://github.com/MaRDI4N
 new mw.Api().postWithToken( 'csrf', {
     action: 'updateItemFromWikiData',
     qid: 'Q12345'
-} ... )
+} ).done( function ( response ) {
+    console.log( 'Success:', response );
+} ).fail( function ( error ) {
+    console.log( 'Error:', error );
+} );
 ```

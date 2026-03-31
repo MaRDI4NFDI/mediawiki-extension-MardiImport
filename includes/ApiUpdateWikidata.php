@@ -19,7 +19,8 @@ class ApiUpdateWikidata extends ApiBase {
         $qid = $params['qid'];
 
         // Call internal importer server-side via POST — never exposed to the browser
-        $url = 'http://importer/update/wikidata';
+        $baseUrl = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig()->get( 'MardiImportBaseUrl' );
+        $url = $baseUrl . '/update/wikidata';
         $logger->info( 'updateItemFromWikiData called', [ 'user' => $this->getUser()->getName(), 'qid' => $qid ] );
 
         $req = \MediaWiki\MediaWikiServices::getInstance()
